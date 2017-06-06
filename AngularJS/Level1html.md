@@ -2,7 +2,9 @@
 
 ```html
 
-1.2 Linking the angular files and the file that has the angular javascript code.  using ng-app to connect to the module that we want to use. The double {} is used for expressions, basically writing javascript code within html.
+1.2 Linking the angular files and the file that has the angular javascript code.  
+using ng-app to connect to the module that we want to use. The double {} is used 
+for expressions, basically writing javascript code within html.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
