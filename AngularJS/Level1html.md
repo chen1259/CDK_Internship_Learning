@@ -2,9 +2,7 @@
 
 ```html
 
-1.2 Creating a Store Module
-
-index.html
+1.2 Linking the angular files and the file that has the angular javascript code.  using ng-app to connect to the module that we want to use. The double {} is used for expressions, basically writing javascript code within html.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -18,17 +16,11 @@ index.html
   </body>
 </html>
 
-app.js
-
-var app = angular.module("gemStore", []);
-
 ```
 
 ```html
 
-1.4 First Controller
-
-index.html
+1.4 Within the double brackets we learn how to use ng-controller to connect to a controller within app.js and also name it as something else for ease of use.  The double brackets allow us to use the alias to basically access (this) where (this) is the original StoreController.  So store.product.price would be in app.js this.product.price, which if connected to gem would give this.gem.price.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -47,25 +39,11 @@ index.html
   </body>
 </html>
 
-app.js
-
-(function(){
-  var gem = { name: 'Azurite', price: 2.95 };
-  var app = angular.module('gemStore', []);
-  
-  app.controller('StoreController', function() {
-    this.product = gem;
-  });
-  
-})();
-
 ```
 
 ```html
 
-1.6 Ng-show and Ng-hide along with boolean stuff
-
-index.html
+1.6 Basically showing how to use ng-show and ng-hide. Takes in a boolean.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -85,30 +63,11 @@ index.html
   </body>
 </html>
 
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function(){
-    this.product = gem;
-  });
-
-  var gem = {
-    name: 'Azurite',
-    price: 110.50,
-    canPurchase: false,
-    soldOut: true
-  };
-})();
-
 ```
 
 ```html
 
-1.7 Looping through with ng-repeat and how to make it look cleaner
-
-index.html
+1.7 The way we use ng-repeat is we give what we want to repeat a new name like product then use the in keyword for where the array is.  Since this.products = gems in the app.js and gems is an array of gems(objects) then we use product in store.products to have the product point to every single object one at a time in the gems array.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -126,21 +85,5 @@ index.html
     </div>
   </body>
 </html>
-
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
-
-  var gems = [
-    { name: 'Azurite', price: 2.95 },
-    { name: 'Bloodstone', price: 5.95 },
-    { name: 'Zircon', price: 3.95 }
-  ];
-})();
 
 ```
