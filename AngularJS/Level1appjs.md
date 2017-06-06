@@ -8,6 +8,8 @@ within the 1.2 html file.
 
 var app = angular.module("gemStore", []);
 
+```
+
 ```js
 
 1.4 Writing a controller.  The gem is just an object for now with some properties that we will 
