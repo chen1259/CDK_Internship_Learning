@@ -4,7 +4,7 @@
 
 1.2 Creating a Store Module
 
-###index.html
+index.html
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -18,7 +18,7 @@
   </body>
 </html>
 
-###app.js
+app.js
 
 var app = angular.module("gemStore", []);
 
@@ -28,7 +28,7 @@ var app = angular.module("gemStore", []);
 
 1.4 First Controller
 
-###index.html
+index.html
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -47,7 +47,7 @@ var app = angular.module("gemStore", []);
   </body>
 </html>
 
-###app.js
+app.js
 
 (function(){
   var gem = { name: 'Azurite', price: 2.95 };
@@ -63,9 +63,9 @@ var app = angular.module("gemStore", []);
 
 ```html
 
-1.6 Not For Sale
+1.6 Ng-show and Ng-hide along with boolean stuff
 
-###index.html
+index.html
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -85,6 +85,62 @@ var app = angular.module("gemStore", []);
   </body>
 </html>
 
+app.js
 
+(function() {
+  var app = angular.module('gemStore', []);
+
+  app.controller('StoreController', function(){
+    this.product = gem;
+  });
+
+  var gem = {
+    name: 'Azurite',
+    price: 110.50,
+    canPurchase: false,
+    soldOut: true
+  };
+})();
+
+```
+
+```html
+
+1.7 Looping through with ng-repeat and how to make it look cleaner
+
+index.html
+
+<!DOCTYPE html>
+<html ng-app="gemStore">
+  <head>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </head>
+  <body class="container" ng-controller="StoreController as store">
+    <div ng-repeat="product in store.products" class="product row">
+      <h3>
+        {{product.name}}
+        <em class="pull-right">${{product.price}}</em>
+      </h3>
+    </div>
+  </body>
+</html>
+
+app.js
+
+(function() {
+  var app = angular.module('gemStore', []);
+
+  app.controller('StoreController', function(){
+    this.products = gems;
+  });
+
+  var gems = [
+    { name: 'Azurite', price: 2.95 },
+    { name: 'Bloodstone', price: 5.95 },
+    { name: 'Zircon', price: 3.95 }
+  ];
+})();
 
 ```
