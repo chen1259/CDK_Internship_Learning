@@ -2,9 +2,10 @@
 
 ```html
 
-2.2 Using Filters
+2.2 Instead of using the dollar sign to print out the price of something, we can use
+filters with the {{ String/Integer | filter }} format.  Filter can be OrderBy:, LimitTo:,
+,Date: , and other stuff that you can look up.
 
-index.html
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -22,23 +23,6 @@ index.html
     </div>
   </body>
 </html>
-
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
-
-  var gems = [
-    { name: 'Azurite', price: 110.50 },
-    { name: 'Bloodstone', price: 22.90 },
-    { name: 'Zircon', price: 1100 },
-  ];
-})();
-
 
 ```
 
@@ -71,8 +55,6 @@ index.html
     </div>
   </body>
 </html>
-
-app.js
 
 (function() {
   var app = angular.module('gemStore', []);
@@ -165,7 +147,9 @@ app.js
 
 ```html
 
-2.4 Displaying all the thumbnails
+2.4 We use product.images[0] and ng-src because src in a regular <img /> will not work.  
+product.images[0] gives us the path to the image from the images array that is a part of the\
+gems property. We then repeat to make thumbnails with ng-repeat="image in product.images" and ng-src="{{image}}"
 
 index.html
 
@@ -196,65 +180,13 @@ index.html
   </body>
 </html>
 
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function() {
-    this.products = gems;
-  });
-
-  var gems = [{
-    name: 'Azurite',
-    description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
-    shine: 8,
-    price: 110.50,
-    rarity: 7,
-    color: '#CCC',
-    faces: 14,
-    images: [
-      "images/gem-02.gif",
-      "images/gem-05.gif",
-      "images/gem-09.gif"
-    ]
-  }, {
-    name: 'Bloodstone',
-    description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
-    shine: 9,
-    price: 22.90,
-    rarity: 6,
-    color: '#EEE',
-    faces: 12,
-    images: [
-      "images/gem-01.gif",
-      "images/gem-03.gif",
-      "images/gem-04.gif"
-    ]
-  }, {
-    name: 'Zircon',
-    description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
-    shine: 70,
-    price: 1100,
-    rarity: 2,
-    color: '#000',
-    faces: 6,
-    images: [
-      "images/gem-06.gif",
-      "images/gem-07.gif",
-      "images/gem-10.gif"
-    ]
-  }];
-})();
-
-
 ```
 
 
 ```html
 
-2.5 No Images No Gallery
-
+2.5 This time we only show the gallery if there are images of the product in the first place.  I used w/e was put in the 
+ng-show where if the array has 0 pictures then we do not show it, but there are other ways to show this as well.
 index.html
 
 <!DOCTYPE html>
@@ -286,60 +218,14 @@ index.html
   </body>
 </html>
 
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function() {
-    this.products = gems;
-  });
-
-  var gems = [{
-    name: 'Azurite',
-    description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
-    shine: 8,
-    price: 110.50,
-    rarity: 7,
-    color: '#CCC',
-    faces: 14,
-    images: [ ]
-  }, {
-    name: 'Bloodstone',
-    description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
-    shine: 9,
-    price: 22.90,
-    rarity: 6,
-    color: '#EEE',
-    faces: 12,
-    images: [
-      "images/gem-01.gif",
-      "images/gem-03.gif",
-      "images/gem-04.gif"
-    ]
-  }, {
-    name: 'Zircon',
-    description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
-    shine: 70,
-    price: 1100,
-    rarity: 2,
-    color: '#000',
-    faces: 6,
-    images: [
-      "images/gem-06.gif",
-      "images/gem-07.gif",
-      "images/gem-09.gif"
-    ]
-  }];
-})();
-
 
 ```
 
 
 ```html
 
-2.7 Tab stuff and the functions
+2.7 From here we look at how to make different tabs so responsive with angularjs.  
+We didn't do any html in this part though.
 
 index.html
 
@@ -376,117 +262,15 @@ index.html
   </body>
 </html>
 
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
-
-  app.controller('TabController', function(){
-    this.tab = 1;
-    
-    this.setTab = function(setTab) {
-      this.tab = setTab;
-    };
-    
-    this.isSet = function(setVal) {
-      return this.tab === setVal;
-    };
-  });
-
-  var gems = [
-      {
-        name: 'Azurite',
-        description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
-        shine: 8,
-        price: 110.50,
-        rarity: 7,
-        color: '#CCC',
-        faces: 14,
-        images: [
-          "images/gem-02.gif",
-          "images/gem-05.gif",
-          "images/gem-09.gif"
-        ],
-        reviews: [{
-          stars: 5,
-          body: "I love this gem!",
-          author: "joe@example.org",
-          createdOn: 1397490980837
-        }, {
-          stars: 1,
-          body: "This gem sucks.",
-          author: "tim@example.org",
-          createdOn: 1397490980837
-        }]
-      },
-      {
-        name: 'Bloodstone',
-        description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
-        shine: 9,
-        price: 22.90,
-        rarity: 6,
-        color: '#EEE',
-        faces: 12,
-        images: [
-          "images/gem-01.gif",
-          "images/gem-03.gif",
-          "images/gem-04.gif",
-        ],
-        reviews: [{
-          stars: 3,
-          body: "I think this gem was just OK, could honestly use more shine, IMO.",
-          author: "JimmyDean@example.org",
-          createdOn: 1397490980837
-        }, {
-          stars: 4,
-          body: "Any gem with 12 faces is for me!",
-          author: "gemsRock@example.org",
-          createdOn: 1397490980837
-        }]
-      },
-      {
-        name: 'Zircon',
-        description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
-        shine: 70,
-        price: 1100,
-        rarity: 2,
-        color: '#000',
-        faces: 6,
-        images: [
-          "images/gem-06.gif",
-          "images/gem-07.gif",
-          "images/gem-09.gif"
-        ],
-        reviews: [{
-          stars: 1,
-          body: "This gem is WAY too expensive for its rarity value.",
-          author: "turtleguyy@example.org",
-          createdOn: 1397490980837
-        }, {
-          stars: 1,
-          body: "BBW: High Shine != High Quality.",
-          author: "LouisW407@example.org",
-          createdOn: 1397490980837
-        }, {
-          stars: 1,
-          body: "Don't waste your rubles!",
-          author: "nat@example.org",
-          createdOn: 1397490980837
-        }]
-      }
-    ];
-})();
-
 ```
 
 
 ```html
 
-2.8 Using TabController
+2.8 We actually use the tab code now by using ng-class.  The format is ng-class="{ classname:expression }".
+What we got would be give the li the active class if the panel.tab is currently set to 1, 2, 3 depending on which single 
+tab we want to show.  The ng-click is something that happens once we click the <a> link.  We use the setTab function
+in order to set the current tab of the product controller into the corresponding number we need.
 
 index.html
 
@@ -542,117 +326,14 @@ index.html
   </body>
 </html>
 
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
-
-  app.controller('TabController', function(){
-    this.tab = 1;
-
-    this.setTab = function(newValue){
-      this.tab = newValue;
-    };
-
-    this.isSet = function(tabName){
-      return this.tab === tabName;
-    };
-  });
-
-  var gems = [
-    {
-      name: 'Azurite',
-      description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
-      shine: 8,
-      price: 110.50,
-      rarity: 7,
-      color: '#CCC',
-      faces: 14,
-      images: [
-        "images/gem-02.gif",
-        "images/gem-05.gif",
-        "images/gem-09.gif"
-      ],
-      reviews: [{
-        stars: 5,
-        body: "I love this gem!",
-        author: "joe@example.org",
-        createdOn: 1397490980837
-      }, {
-        stars: 1,
-        body: "This gem sucks.",
-        author: "tim@example.org",
-        createdOn: 1397490980837
-      }]
-    },
-    {
-      name: 'Bloodstone',
-      description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
-      shine: 9,
-      price: 22.90,
-      rarity: 6,
-      color: '#EEE',
-      faces: 12,
-      images: [
-        "images/gem-01.gif",
-        "images/gem-03.gif",
-        "images/gem-04.gif",
-      ],
-      reviews: [{
-        stars: 3,
-        body: "I think this gem was just OK, could honestly use more shine, IMO.",
-        author: "JimmyDean@example.org",
-        createdOn: 1397490980837
-      }, {
-        stars: 4,
-        body: "Any gem with 12 faces is for me!",
-        author: "gemsRock@example.org",
-        createdOn: 1397490980837
-      }]
-    },
-    {
-      name: 'Zircon',
-      description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
-      shine: 70,
-      price: 1100,
-      rarity: 2,
-      color: '#000',
-      faces: 6,
-      images: [
-        "images/gem-06.gif",
-        "images/gem-07.gif",
-        "images/gem-09.gif"
-      ],
-      reviews: [{
-        stars: 1,
-        body: "This gem is WAY too expensive for its rarity value.",
-        author: "turtleguyy@example.org",
-        createdOn: 1397490980837
-      }, {
-        stars: 1,
-        body: "BBW: High Shine != High Quality.",
-        author: "LouisW407@example.org",
-        createdOn: 1397490980837
-      }, {
-        stars: 1,
-        body: "Don't waste your rubles!",
-        author: "nat@example.org",
-        createdOn: 1397490980837
-      }]
-    }
-  ];
-})();
 
 
 ```
 
 ```html
 
-2.9 Creating Gallery Controller
+2.9 We just added the ng-show stuff for the current tab, basically linked it so that it
+showed the correct tab that we chose.  Also added in the product.description and product.shine.
 
 index.html
 
@@ -711,43 +392,13 @@ index.html
   </body>
 </html>
 
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('GalleryController', function() {
-    this.current = 0;
-    
-    this.setCurrent = function(value) {
-      this.current = value || 0;
-    };
-    
-  });
-
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
-
-  app.controller('TabController', function(){
-    this.tab = 1;
-
-    this.setTab = function(newValue){
-      this.tab = newValue;
-    };
-
-    this.isSet = function(tabName){
-      return this.tab === tabName;
-    };
-  });
 
 ```
 
 ```html
 
-2.10 Using GalleryController
-
-index.html
+2.10 We change it so that the gallery is showed through the current gallery number.  We change the 
+gallery's current number with setCurrent but I don't think we ever use that changing function in this.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -801,34 +452,6 @@ index.html
     </div>
   </body>
 </html>
-
-app.js
-
-(function() {
-  var app = angular.module('gemStore', []);
-
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
-
-  app.controller('TabController', function(){
-    this.tab = 1;
-
-    this.setTab = function(newValue){
-      this.tab = newValue;
-    };
-
-    this.isSet = function(tabName){
-      return this.tab === tabName;
-    };
-  });
-
-  app.controller('GalleryController', function(){
-    this.current = 0;
-    this.setCurrent = function(newGallery){
-      this.current = newGallery || 0;
-    };
-  });
 
 
 ```
