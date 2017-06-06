@@ -22,7 +22,11 @@ for expressions, basically writing javascript code within html.
 
 ```html
 
-1.4 Within the double brackets we learn how to use ng-controller to connect to a controller within app.js and also name it as something else for ease of use.  The double brackets allow us to use the alias to basically access (this) where (this) is the original StoreController.  So store.product.price would be in app.js this.product.price, which if connected to gem would give this.gem.price.
+1.4 Within the double brackets we learn how to use ng-controller to connect to a 
+controller within app.js and also name it as something else for ease of use.  
+The double brackets allow us to use the alias to basically access (this) where 
+(this) is the original StoreController.  So store.product.price would be in app.js 
+this.product.price, which if connected to gem would give this.gem.price.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
@@ -69,7 +73,10 @@ for expressions, basically writing javascript code within html.
 
 ```html
 
-1.7 The way we use ng-repeat is we give what we want to repeat a new name like product then use the in keyword for where the array is.  Since this.products = gems in the app.js and gems is an array of gems(objects) then we use product in store.products to have the product point to every single object one at a time in the gems array.
+1.7 The way we use ng-repeat is we give what we want to repeat a new name like 
+product then use the in keyword for where the array is.  Since this.products = gems 
+in the app.js and gems is an array of gems(objects) then we use product in store.products 
+to have the product point to every single object one at a time in the gems array.
 
 <!DOCTYPE html>
 <html ng-app="gemStore">
